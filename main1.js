@@ -12,7 +12,7 @@
 //}
 
 //parent node
-var item = document.querySelector("#items");
+// var item = document.querySelector("#items");
 //console.log(item.parentNode);
 //item.parentNode.parentNode.style.backgroundColor = 'grey';
 
@@ -31,18 +31,18 @@ var item = document.querySelector("#items");
 //previous siblinf
 //console.log(item.previousElementSibling);
 
-//create element
-var newDiv = document.createElement('div');
-//add class
-newDiv.className = 'hello';
-newDiv.id ='helllo1';
-//add attr
-newDiv.setAttribute('title','hello world');
-//create text node
-var text = document.createTextNode('hello world');
+// //create element
+// var newDiv = document.createElement('div');
+// //add class
+// newDiv.className = 'hello';
+// newDiv.id ='helllo1';
+// //add attr
+// newDiv.setAttribute('title','hello world');
+// //create text node
+// var text = document.createTextNode('hello world');
 
-//add text to div
-newDiv.appendChild(text);
+// //add text to div
+// newDiv.appendChild(text);
 
 //var container = document.querySelector('header .container');
 //var h1 = document.querySelector('header h1');
@@ -51,10 +51,58 @@ newDiv.appendChild(text);
 //newDiv.style.fontSize = '30px';
 //newDiv.style.fontWeight = 'bold'
 
-var container = document.getElementById('items');
-var newli = document.createElement('li');
-newli.appendChild(text);
-console.log(newli);
-var secondli = document.querySelector('li:nth-child(1)');
-container.insertBefore(newli,secondli);
+// var container = document.getElementById('main');
+// //var newli = document.createElement('li');
+// //newli.className ='list-group-item';
+// //newli.appendChild(text);
+// console.log(newDiv);
+// var secondli = document.getElementById('items');
+// container.insertBefore(newDiv,secondli);
 
+var form = document.getElementById('addForm');
+var item = document.getElementById('items');
+
+//form submit event
+form.addEventListener('submit' , additem);
+function additem(e){
+    e.preventDefault();
+
+    //creat li item
+
+    var n = document.getElementById('item').value;
+    var li = document.createElement('li');
+    li.className = 'list-group-item';
+    li.appendChild(document.createTextNode(n));
+
+    //create delete button
+
+    var butt = document.createElement('button');
+    butt.className = 'btn btn-danger btn-sm float-right delete';
+    butt.appendChild(document.createTextNode('X'));
+    li.appendChild(butt);
+
+    //create edit button
+
+    var ebutt = document.createElement('button');
+    ebutt.className = 'btn btn-dark';
+    ebutt.appendChild(document.createTextNode('Edit'));
+    ebutt.style.marginLeft = '900px';
+    li.appendChild(ebutt);
+
+    //append ti list item
+
+    item.appendChild(li);
+
+
+}
+//delete event
+item.addEventListener('click' , remove);
+function remove(e){
+    if(e.target.classList.contains('delete')){
+        if(confirm('Are You Sure?')){
+          var li = e.target.parentElement;
+          item.removeChild(li);
+        }
+      }
+
+}
