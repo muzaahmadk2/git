@@ -89,7 +89,7 @@ function additem(e){
     ebutt.style.marginLeft = '900px';
     li.appendChild(ebutt);
 
-    //append ti list item
+    //append li list item
 
     item.appendChild(li);
 
